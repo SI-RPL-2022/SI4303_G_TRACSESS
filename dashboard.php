@@ -1,104 +1,77 @@
-<main>
-  <div class="container">
-    <div class="admin-title">
-      <div class="row">
-        <div class="col m6 s12">
-          <h4 class="light"><?=$title?></h4>
-        </div>
-        <div class="col m6 s12">
-         <div class="nav-breadcrumb blue">
-          <a href="#!" class="breadcrumb">Admin</a>
-          <a href="#!" class="breadcrumb"><?=$title?></a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!--card stats start-->
-  <div class="card-stats">
-    <div class="row">
-      <div class="col s12 m6 l3">
-        <div class="card stats">
-          <div class="card-content  teal white-text">
-            <p><i class="material-icons inline-text">group_add</i> Pengguna Baru</p>
-            <h4 ><?=$b_user?></h4>
-            <p>Total <?=$a_user?> Pengguna</p>
-          </div>
-          <div class="card-action teal darken-2 white-text">
-            <a href="<?=site_url('admin/costumer')?>"><i class="material-icons inline-text">chevron_right</i>Selengkapnya</a>
-          </div>
-        </div>
-      </div>
-      <div class="col s12 m6 l3">
-        <div class="card stats">
-          <div class="card-content  cyan white-text">
-            <p><i class="material-icons inline-text">shopping_cart</i> Pesanan Baru</p>
-            <h4><?=$b_order?></h4>
-            <p>Total <?=$a_order?> Pesanan</p>
-          </div>
-          <div class="card-action cyan darken-2 white-text">
-            <a href="<?=site_url('admin/order')?>"><i class="material-icons inline-text">chevron_right</i>Selengkapnya</a>
-          </div>
-        </div>
-      </div>
-      <div class="col s12 m12 l6">
-        <div class="card stats">
-          <div class="card-content  indigo white-text">
-            <p><i class="material-icons inline-text">attach_money</i> Pemasukan Pada Hari Ini</p>
-            <h4 ><?=rupiah($b_in)?></h4>
-            <p> Total Kelesuruhan <span class="indigo-text text-lighten-5"><?=rupiah($a_in)?></span>
-            </p>
-          </div>
-          <div class="card-action indigo darken-2 white-text">
-            <a href="<?=site_url('admin/order')?>"><i class="material-icons inline-text">chevron_right</i>Selengkapnya</a>
-          </div>
-        </div>
-      </div>
-<!--                             <div class="col s12 m6 l3">
-                                <div class="card stats">
-                                    <div class="card-content  light-blue white-text">
-                                        <p><i class="material-icons inline-text">group_add</i> New Clients</p>
-                                        <h4 >566</h4>
-                                        <p>15% <span class="light-blue-text text-lighten-5">from yesterday</span>
-                                        </p>
-                                    </div>
-                                    <div class="card-action light-blue darken-2 white-text">
-                                      <a href=""><i class="material-icons inline-text">chevron_right</i>Selengkapnya</a>
-                                    </div>
-                                </div>
-                              </div> -->
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col m12 s12">      
-                              <div class="card grey lighten-4">
-                                <div class="title-card grey lighten-4">Statistik Pendapatan Tahun Ini</div>
-                                <div class="card-content white">
-                                  <div class="container">
-                                    <canvas id="myChart"></canvas>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <!-- <div class="col m4 s12">      
-                              <div class="card grey lighten-4">
-                                <div class="title-card grey lighten-4">Statistik Penjualan Per Transportasi</div>
-                                <div class="card-content white">
-                                  <div class="container">
-                                    <canvas id="myChartt"></canvas>
-                                  </div>
-                                </div>
-                              </div>
-                            </div> -->
-                          </div>
-<!--                     <div class="row">
-                      <div class="alert blue">Tes </div>
-                      <div class="alert green">Tes </div>
-                      <div class="alert red">Tes </div>
-                      <div class="alert orange">Tes </div>
-                      <div class="alert blue strip-blue">Tes</div>
-                      <div class="alert blue strip-green">Tes</div>
-                      <div class="alert blue strip-red">Tes</div>
-                      <div class="alert blue strip-orange">Tes</div>
-                    </div> -->
-                  </div>
-                </main>  
+<?php
+class Dashboard extends CI_Controller{
+	public function __construct() {
+    	parent::__construct();
+        $user = $this->session->userdata('auth_admin');
+        if(!$user){
+            redirect('admin/login');
+        }
+    }
+	public function index(){
+		$data['title'] = 'Dasbor';
+		$data['a_user'] = $this->m_general->gDataA('costumer')->num_rows();
+		$data['b_user'] = $this->m_general->gDataW('costumer',array('reg_date'=>date('Y-m-d')))->num_rows();
+		$data['a_order'] = $this->m_general->gDataA('order')->num_rows();
+		$data['b_order'] = $this->m_general->gDataW('order',array('order_date'=>date('Y-m-d')))->num_rows();
+		$a_in = $this->m_general->gDataA('order')->result();
+		$total=0;
+		foreach($a_in as $a){
+			$total = $total+$a->final_price;
+		}
+		$data['a_in'] = $total;
+		$b_in = $this->m_general->gDataW('order',array('order_date'=>date('Y-m-d')))->result();
+		$totall=0;
+		foreach($b_in as $b){
+			$totall = $totall+$b->final_price;
+		}
+		$data['b_in'] = $totall;
+		$data['content'] = 'admin/dashboard';
+		$this->load->view('admin/template',$data);
+	}
+	public function tes(){
+            $this->load->library("PHPExcel");
+            $objPHPExcel = new PHPExcel();
+            $objPHPExcel = PHPExcel_IOFactory::load("./template/excelA4.xlsx");
+            $start = '2018-02-10';
+            $end = '2018-02-17';
+            $baris  = 6;
+            $order = $this->m_general->gOrderDate($start,$end);
+            $no=1;
+
+            foreach ($order as $frow){
+                $styleArray = array(
+                  'borders' => array(
+                    'allborders' => array(
+                      'style' => PHPExcel_Style_Border::BORDER_THIN
+                    )
+                  )
+                );
+                $objPHPExcel->setActiveSheetIndex(0)->setCellValue("A".$baris, $no);
+                $objPHPExcel->setActiveSheetIndex(0)->setCellValue("B".$baris, $frow->buyer_name); 
+                $objPHPExcel->setActiveSheetIndex(0)->setCellValue("C".$baris, $frow->time); 
+                $objPHPExcel->setActiveSheetIndex(0)->setCellValue("D".$baris, $frow->price); 
+                $objPHPExcel->setActiveSheetIndex(0)->setCellValue("E".$baris, $frow->status);  
+
+                $objPHPExcel->getActiveSheet()->getStyle('A'.$baris)->applyFromArray($styleArray);
+                $objPHPExcel->getActiveSheet()->getStyle('B'.$baris)->applyFromArray($styleArray);
+                $objPHPExcel->getActiveSheet()->getStyle('C'.$baris)->applyFromArray($styleArray);
+                $objPHPExcel->getActiveSheet()->getStyle('D'.$baris)->applyFromArray($styleArray);
+                $objPHPExcel->getActiveSheet()->getStyle('E'.$baris)->applyFromArray($styleArray);
+                 
+                $baris++;
+                $no++;
+            }
+             $objPHPExcel->setActiveSheetIndex(0)
+                                        ->setCellValue('A3', ''.tgl_indo($start).' Sampai '.tgl_indo($end));
+            $objPHPExcel->getActiveSheet()->setTitle('Data');   
+            $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+            $filename = 'Rekap Order Dari '.tgl_indo($start).' Sampai '.tgl_indo($end).'.xlsx';
+            header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
+            header("Cache-Control: no-store, no-cache, must-revalidate");
+            header("Cache-Control: post-check=0, pre-check=0", false);
+            header("Pragma: no-cache");
+            header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+            header('Content-Disposition: attachment;filename="'.$filename.'"');
+            $objWriter->save("php://output");
+	}
+}
