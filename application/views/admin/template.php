@@ -23,9 +23,10 @@
         <ul class="right hide-on-med-and-down">
           <li> <a class='light dropdown-button grey lighten-5 black-text' href='#' data-activates='dropdown1' style="width:150px ">
               <i class="material-icons inline-text">account_circle</i> Administrator</a>
-            <ul id='dropdown1' class='dropdown-content'>
-              <li><a href="#!">Pengaturan Akun</a></li>
+            <ul id='dropdown1' class='dropdown-content' >
               <li><a href="<?= base_url('admin/logout') ?>">Keluar</a></li>
+<!--               <li style="padding:15px; color:gray; ">TRACCESS APP</li>
+               -->
             </ul>
           </li>
         </ul>
@@ -47,21 +48,20 @@
             <ul class="collapsible collapsible-accordion">
               <li>
                 <a class="collapsible-header">
-                  <i class="material-icons">train</i>Transportasi<i class="material-icons dropdown">arrow_drop_down</i></a>
+                  <i class="material-icons">train</i>Data Kereta Api<i class="material-icons dropdown">arrow_drop_down</i></a>
                 <div class="collapsible-body">
                   <ul>
-                    <li><a href="<?= site_url('admin/transportation') ?>">Daftar Transportasi</a></li>
-                    <li><a href="<?= site_url('admin/transportation_class') ?>">Kelas Transportasi</a></li>
-                    <li><a href="<?= site_url('admin/transportation_company') ?>">Perusahaan Transportasi</a></li>
+                    <li><a href="<?= site_url('admin/transportation') ?>">Daftar kereta api</a></li>
+                    <li><a href="<?= site_url('admin/transportation_class') ?>">Kelas Kereta Api</a></li>
+                    <!-- <li><a href="<?= site_url('admin/transportation_company') ?>">Perusahaan Transportasi</a></li> -->
                   </ul>
                 </div>
               </li>
             </ul>
           </li>
-          <li><a href="<?= site_url('admin/place') ?>"><i class="material-icons">location_on</i>Bandara / Stasiun</a></li>
-          <li><a href="<?= site_url('admin/rute') ?>"><i class="material-icons">directions</i>Rute Perjalanan</a></li>
-          <li><a href="<?= site_url('admin/promo_code') ?>"><i class="material-icons">label</i>Kode Promo</a></li>
-          <li><a href="<?= site_url('admin/costumer') ?>"><i class="material-icons">group</i>Pengguna</a></li>
+          <li><a href="<?= site_url('admin/place') ?>"><i class="material-icons">location_on</i>Data Stasiun</a></li>
+          <li><a href="<?= site_url('admin/rute') ?>"><i class="material-icons">directions</i>Rute Kereta</a></li>
+          <li><a href="<?= site_url('admin/costumer') ?>"><i class="material-icons">group</i>Data Akun Customer</a></li>
           <li class="no-padding">
             <ul class="collapsible collapsible-accordion">
               <li>
