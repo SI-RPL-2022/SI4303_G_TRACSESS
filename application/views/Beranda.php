@@ -10,13 +10,14 @@
       $info = $this->m_general->gDataW('costumer',array('id_costumer'=>$this->session->userdata('auth_user')))->row();
       ?>
       <h3 style="margin-top: 100px" class="light">Hai, <?=$info->full_name?></h3>
-      <p class="white-text">Pesan Tiketmu Hanya Di Aplikasi TRACSESS</p>
+      <p class="white-text">Pesan Tiketmu Hanya Di Aplikasi TRACSESS Vesi beranda</p>
       <?php
     }else{
       ?>
       <h3 style="margin-top: 100px" class="light">SELAMAT DATANG DI TRACSESS</h3>
-      <p class="white-text">Booking Online Tiket Kereta Apimu Sekarang Juga</p>
+      <p class="white-text">Booking Online Tiket Kereta Apimu Sekarang Juga Vesi beranda</p>
       <a href="<?=site_url('account/register')?>" class="btn waves-effect blue white-text darken-text-2">DAFTAR SEKARANG</a>
+      <a href="<?=site_url('Contoh')?>" class="btn waves-effect blue white-text darken-text-2">DAFTAR SEKARANG</a>
       <?php
     }
     ?>
@@ -191,19 +192,50 @@
       <?php } ?>
     </div>
   </div> -->
-  <div class="row" style="margin-top: 100px">
-    <div class="col m4">
-      <h4>Partner Kereta Api</h4>
-      <p class="light">Pergi ke bandara ataupun menjelajah negeri, pesan tiket kereta Anda bebas repot di sini!</p>
-    </div>
-    <div class="col m8 partner-list">
-      <?php foreach($pk as $p) {?>
-      <a href="" class="partner"><img title="<?=$p->company_name?>" src="<?=base_url()."assets/"?>images/company_logo/<?=$p->company_logo?>"></a>
-      <?php } ?>
-    </div>
-  </div>
+  
 
 </div>
+<div class="row">
+
+<!--    <center><h1> UNDER CONSTRUCTION !!!!</h1></center> -->
+
+
+<div class="row" style="margin-top: 50px; margin-left: 340px;  width:50%;text-align:center;justify-content:center;border-radius: 15px;background-color:#42A5F5; box-shadow: 3px 3px 3px 3px #cccccc;">
+    <div class="col m6" >
+      <table style="width:100%;">  
+  <tr>
+    <th rowspan="2"><img src="https://catatanoline.web.id/wp-content/uploads/2019/08/E-wallet-900x506.png" style="width:50px "></th>
+    <td><b><i>TRACSESS Pay</i></b></td>
+  </tr>
+  <tr>
+    <td>      Rp.<?php echo number_format($info->Balance) ?>
+   <!--    <?=$info->Balance?> -->
+<!--       <a href="" style="color:black"><?=$p->full_name?></a> -->
+      <?php  ?></td>
+  </tr>
+</table>
+    </div>
+
+        <div class="col m6">
+     <table style="width:100%">
+
+  <tr>
+     <th rowspan="2"><img src="https://www.pinclipart.com/picdir/big/355-3556122_4-succeed-vector-trophy-icon-png-clipart.png" style="width:30px "></th>
+    <td><b><i>Your Point</i></b></td>
+  </tr>
+  <tr>
+    <td>-</td>
+  </tr>
+</table>
+    </div>
+
+      
+   
+  </div>
+</div>
+
+
+
 
   <div class="row">
 
@@ -238,7 +270,17 @@
    
   </div>
 
- 
+ <div class="row" style="margin-top: 100px">
+    <div class="col m4">
+      <h4>Partner Kereta Api</h4>
+      <p class="light">Pergi ke bandara ataupun menjelajah negeri, pesan tiket kereta Anda bebas repot di sini!</p>
+    </div>
+    <div class="col m8 partner-list">
+      <?php foreach($pk as $p) {?>
+      <a href="<?=base_url()."assets/"?>images/company_logo/<?=$p->company_logo?>" class="partner"><img title="<?=$p->company_name?>" src="<?=base_url()."assets/"?>images/company_logo/<?=$p->company_logo?>"></a>
+      <?php } ?>
+    </div>
+  </div>
 <!-- ================ -->
     <!-- <div class="col m4">
       <h4>Partner Maskapai</h4>

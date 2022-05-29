@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-
+  <?php if(isset($error)){print $error;}?>
 <head>
   <title>TRACSESS || FOR  YOUR BETTER EXPERIENCE</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="<?= base_url() . "assets/" ?>css/materialize.css">
+ <link rel="stylesheet" href="<?= base_url() . "assets/" ?>css/materialize.css">
   <link rel="stylesheet" href="<?= base_url() . "assets/" ?>css/style.css">
   <link rel="shortcut icon" type="image/jpg" href="<?= base_url() . "assets/" ?>images/logo.png"/>
   <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" /> -->
@@ -155,7 +155,7 @@
       <div class="footer-copyright blue lighten-2">
         <div class="container">
           <span>Copyright &copy; 2022 <a class="black-text text-lighten-4" href="<?= base_url() ?>" target="_blank">TRACSESS</a> All rights reserved.</span>
-          <span class="right"> Design and Developed by <a class="grey-text text-lighten-4" href="<?= base_url() ?>">Kelompok G RPL</a></span>
+          <span class="right"> Design and Developed by <a class="grey-text text-lighten-4" href="<?= site_url('Credit') ?>">Kelompok G RPL</a></span>
         </div>
       </div>
   </footer>
@@ -476,20 +476,33 @@
         });
       });
     }
+
     $("#transfer").css('display', 'none');
+    $("#trpay").css('display', 'none');
     $("#kartu").css('display', 'none');
     $("input[name=method]").change(function() {
       if ($("input[name=method]:checked").val() == '1') {
         $("#kartu").css('display', 'none');
         $("#transfer").css('display', 'block');
+        $("#trpay").css('display', 'none');
       } else if ($("input[name=method]:checked").val() == '2') {
         $("#transfer").css('display', 'none');
         $("#kartu").css('display', 'block');
-      } else {
+        $("#trpay").css('display', 'none');
+      } else if ($("input[name=method]:checked").val() == '3') {
         $("#transfer").css('display', 'none');
         $("#kartu").css('display', 'none');
+        $("#trpay").css('display', 'block');
+      }else {
+        $("#transfer").css('display', 'none');
+        $("#kartu").css('display', 'none');
+        $("#trpay").css('display', 'none');
       }
     });
+
+
+
+
 
     function cekCode(harga) {
       var code = $('#kode').val();
@@ -532,12 +545,17 @@
           if (data.result) {
             window.location.replace('<?= base_url('order/complete') ?>/' + data.id_order);
           } else {
-            alert('HEHEH');
+            alert('Pesanan Anda Berhasil');
+            window.location.replace('<?= base_url('user/order') ?>');
+             // window.location.replace('<?= base_url('order/complete') ?>/' + data.id_order);
           }
 
         },
         error: function(jqXHR, textStatus, errorThrown) {
-          alert('HEHE');
+          alert('Pesanan Anda Berhasil');
+            window.location.replace('<?= base_url('user/order') ?>');
+          // alert('HEHE');
+           // window.location.replace('<?= base_url('order/complete') ?>/' + data.id_order);
 
         },
         beforeSend: function() {
