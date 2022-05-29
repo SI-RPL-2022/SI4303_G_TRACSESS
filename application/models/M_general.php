@@ -96,6 +96,8 @@ class M_General extends CI_Model{
 		$query = $this->db->get('place');
 		return $query;
 	}
+
+
 	public function searchFlight($date_g,$from,$to,$class){
 		$this->db->where('rute.id_transportation_type',1);
 		if(!empty($class)){
@@ -167,7 +169,23 @@ class M_General extends CI_Model{
 		return $query->row();
 	}
 
+	public function gBlc($id_order){
+		$this->db->where('id_order',$id_order);
+		$this->db->join('Costumer','order.id_costumer=Costumer.id_costumer');
+		$query = $this->db->get('order');
+		return $query->row();
+	}
+
+	public function grutenyacok($id_order){
+		$this->db->where('order.id_order',$id_order);
+		$this->db->join('reservation','reservation.id_order=order.id_order');
+		$this->db->join('v_rute','v_rute.id_rute=reservation.id_rute');
+		$query = $this->db->get('order');
+		return $query->row();
+	}
+
 	public function gOrderA(){
+		$this->db->join('order','order.id_order=v_order.id_order');
 		$this->db->join('payment_type','payment_type.id_payment_type=v_order.id_payment_type');
 		$query = $this->db->get('v_order')->result();
 		$x=0;
@@ -199,6 +217,9 @@ class M_General extends CI_Model{
 			$query[$x]->price = rupiah($d->final_price);
 			$query[$x]->pay_status = '<span class="label-flat '.$color.'">'.$d->status.'</span>';
 			$query[$x]->check_in2 = '<span class="label-flat '.$color1.'">'.$d->check_in.'</span>';
+
+
+			$query[$x]->bukti_transfer = ' <a href="'.base_url().'assets/images/buktitransfer/'.$d->bukti_transfer .'" >"Lihat Bukti Transferan"</a>';
 			$x++;
 		}
 
