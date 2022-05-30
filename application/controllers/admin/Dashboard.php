@@ -8,7 +8,7 @@ class Dashboard extends CI_Controller{
         }
     }
 	public function index(){
-		$data['title'] = 'Dasbor';
+		$data['title'] = 'Dashboard';
 		$data['a_user'] = $this->m_general->gDataA('costumer')->num_rows();
 		$data['b_user'] = $this->m_general->gDataW('costumer',array('reg_date'=>date('Y-m-d')))->num_rows();
 		$data['a_order'] = $this->m_general->gDataA('order')->num_rows();

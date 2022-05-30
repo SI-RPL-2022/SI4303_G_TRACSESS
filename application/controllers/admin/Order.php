@@ -13,8 +13,8 @@ class Order extends CI_Controller{
 	public function index($action='',$id=''){
 		$data['title'] = 'Ticket';
 		$data['content'] = 'admin/crud_custom2';
-		$data['tableTitle'] = array('Pembeli','Waktu','Harga','Status');
-		$data['tableField'] = array('buyer_name','time','price','pay_status');
+		$data['tableTitle'] = array('Pembeli','Waktu','Harga','Status','Bukti_Transfer');
+		$data['tableField'] = array('buyer_name','time','price','pay_status','bukti_transfer');
 		$data['data'] = $this->m_general->gOrderA();
 		if($action=='edit'&&$id!==''){
            $no=0;
