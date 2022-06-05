@@ -42,8 +42,8 @@
         <div class="card-content white">
           <div class="container">
             <div class="btn-group">
-              <a href="<?=site_url('admin/'.$page.'/backup')?>" class="btn waves-effect waves-light block"><i class="material-icons inline-text">backup</i> Backup Database</a>
-              <a href="<?=site_url('admin/'.$page.'/export')?>" class="btn waves-effect waves-light block"><i class="material-icons inline-text">keyboard_backspace</i> Export CSV</a>
+              <!-- <a href="<?=site_url('admin/'.$page.'/backup')?>" class="btn waves-effect waves-light block"><i class="material-icons inline-text">backup</i> Backup Database</a>
+              <a href="<?=site_url('admin/'.$page.'/export')?>" class="btn waves-effect waves-light block"><i class="material-icons inline-text">keyboard_backspace</i> Export CSV</a> -->
               <a href="#truncate" class="btn waves-effect modal-trigger waves-light block"><i class="material-icons inline-text">delete_forever</i> Hapus Semua Data</a>
               <div id="truncate" class="modal deletemodal">
                 <div class="modal-content blue white-text">

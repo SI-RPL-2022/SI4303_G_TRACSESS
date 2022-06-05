@@ -47,11 +47,11 @@
               <div class="row">
                 <div class="input-field">
                   <?php if($i['type']=='text'||$i['type']=='number'||$i['type']=='time'||$i['type']=='file'){ ?>
-                  <input name="<?=$i['name']?>" <?php if(isset($i['id'])) echo 'id="'.$i['id'].'"'?> type="<?=$i['type']?>" <?php if(isset($i['value'])) echo 'value="'.$i['value'].'"'?> <?php if(isset($i['class'])) echo 'class="'.$i['class'].'"'?>>
+                  <input name="<?=$i['name']?>" <?php if(isset($i['id'])) echo 'id="'.$i['id'].'"'?> type="<?=$i['type']?>" <?php if(isset($i['value'])) echo 'value="'.$i['value'].'"'?> <?php if(isset($i['class'])) echo 'class="'.$i['class'].'"'?> >
                   <?php }elseif($i['type']=='select'){
                     ?>
                     <select id="<?php if(isset($i['id'])) echo $i['id']?>" name="<?=$i['name']?>" <?php if(isset($i['onchange'])) echo 'onchange="'.$i['onchange'].'"'?> <?php if(isset($i['class'])) echo 'class="'.$i['class'].'"'?>>
-                      <option value="">Pilih <?=$i['label']?></option>
+                      <!-- <option value="">Pilih <?=$i['label']?></option> -->
                       <?php 
                       $o = $i['option'];
                       $value = $o['value'];
@@ -164,7 +164,7 @@
                 }
                 ?>
                 <td style="text-align: center">
-                  <a href="<?=site_url('admin/'.$page.'/index/edit/'.$d->$primary_key.'')?>" class="btn waves-effect waves-light action yellow"><i class="material-icons">edit</i></a>
+                  <a href="<?=site_url('admin/'.$page.'/index/edit/'.$d->$primary_key.'')?>" class="btn waves-effect waves-light action green"><i class="material-icons">edit</i></a>
                   <a href="#deleteDialog<?=$d->$primary_key?>" class="btn waves-effect modal-trigger waves-light action modal-trigger red"><i class="material-icons">delete</i></a>
                 </td>
                 <div id="deleteDialog<?=$d->$primary_key?>" class="modal deletemodal">
