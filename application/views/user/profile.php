@@ -1,3 +1,66 @@
+<style type="text/css">
+  
+body {
+  font-family: sans-serif;
+}
+
+.profilepic {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #111;
+}
+
+.profilepic:hover .profilepic__content {
+  opacity: 1;
+}
+
+.profilepic:hover .profilepic__image {
+  opacity: .5;
+}
+
+.profilepic__image {
+  object-fit: cover;
+  opacity: 1;
+  transition: opacity .2s ease-in-out;
+}
+
+.profilepic__content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  opacity: 0;
+  transition: opacity .2s ease-in-out;
+}
+
+.profilepic__icon {
+  color: white;
+  padding-bottom: 8px;
+}
+
+.fas {
+  font-size: 20px;
+}
+
+.profilepic__text {
+  text-transform: uppercase;
+  font-size: 12px;
+  width: 50%;
+  text-align: center;
+}
+
+
+</style>
+
 <main>
 	<div class="page-content">
    <div class="container">
@@ -20,7 +83,34 @@
             </div>
             <div class="container">
               <div id="profile" class="col s12">
-                <?=form_open('user/p_profile')?>
+
+  <div class="row" style="margin-top: 10px;">
+    <div class="col m3" >
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/solid.min.css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/svg-with-js.min.css" rel="stylesheet" />
+<?=form_open_multipart('user/p_profile')?>
+
+<div class="profilepic">
+  <img class="profilepic__image" src="<?= base_url() . "assets/" ?>images/profilepic/<?=$info->pic_file?>" width="150" height="150" alt="Profibild" />
+  <div class="profilepic__content">
+    <span class="profilepic__icon"><i class="fas fa-camera"></i></span>
+    <div class="profilepic__text">Edit Profile<input type="file" name="pic_file" style="opacity:0.0"></div>
+  </div>
+</div>
+
+
+      <!-- <img src="https://assets.pikiran-rakyat.com/crop/0x0:1000x924/x/photo/2022/03/10/141822281.jpg" alt="Avatar" style="width:150px;border-radius: 50%; "> -->
+      <button type="submit" class="btn blue" style="margin-top:25px;margin-left:10px"><i class="material-icons inline-text"></i> Upload Foto Baru</button>
+
+
+
+    </div>
+
+        <div class="col m7" style="float:right;">
+     
+                
                 <div class="row">
                   <div class="input-field">
                     <i class="material-icons prefix">person</i>   
@@ -44,6 +134,14 @@
                   </div>
                   <button type="submit" class="btn blue"><i class="material-icons inline-text">save</i> Simpan</button>
                   <?=form_close()?>
+      
+    </div>
+
+
+
+  </div>
+
+
                 </div>
               </div>
               <div id="password" class="col s12">

@@ -1,43 +1,20 @@
 <?php
-class Home extends CI_Controller{
+class Credit extends CI_Controller{
 	public function index(){
-    $user = $this->session->userdata('auth_user');
-          if(!$user){
-    $_SESSION['cart'] = array();
-    $data['title'] = 'Beranda';
-    $data['content'] = 'home';
-    $data['pp'] = $this->m_general->gDataW('transportation_company',array('id_transportation_type'=>1))->result();
-    $data['pk'] = $this->m_general->gDataW('transportation_company',array('id_transportation_type'=>2))->result();
-    $data['kp'] = $this->m_general->gDataW('transportation_class',array('id_transportation_type'=>1))->result();
-    $data['kk'] = $this->m_general->gDataW('transportation_class',array('id_transportation_type'=>2))->result();
-    $data['plp'] = $this->m_general->gPlaceW(array('place.id_transportation_type'=>1))->result();
-    $data['plk'] = $this->m_general->gPlaceW(array('place.id_transportation_type'=>2))->result();
-
-          }else{
-
-    $_SESSION['cart'] = array();
-    $data['title'] = 'Beranda';
-    $data['content'] = 'Beranda';
-    $data['pp'] = $this->m_general->gDataW('transportation_company',array('id_transportation_type'=>1))->result();
-    $data['pk'] = $this->m_general->gDataW('transportation_company',array('id_transportation_type'=>2))->result();
-    $data['kp'] = $this->m_general->gDataW('transportation_class',array('id_transportation_type'=>1))->result();
-    $data['kk'] = $this->m_general->gDataW('transportation_class',array('id_transportation_type'=>2))->result();
-    $data['plp'] = $this->m_general->gPlaceW(array('place.id_transportation_type'=>1))->result();
-    $data['plk'] = $this->m_general->gPlaceW(array('place.id_transportation_type'=>2))->result();
-
-    $data['info'] = $this->m_general->usrInfo($this->session->userdata('auth_user'));
-    // $data['ygy'] = $this->m_general->gKaipay(array('user.id_user'=>$user))->result();
-
-
-
-          }
-		
-   
+		$_SESSION['cart'] = array();
+		$data['title'] = 'Beranda';
+		$data['content'] = 'credit';
+		// $data['pp'] = $this->m_general->gDataW('transportation_company',array('id_transportation_type'=>1))->result();
+		// $data['pk'] = $this->m_general->gDataW('transportation_company',array('id_transportation_type'=>2))->result();
+		// $data['kp'] = $this->m_general->gDataW('transportation_class',array('id_transportation_type'=>1))->result();
+		// $data['kk'] = $this->m_general->gDataW('transportation_class',array('id_transportation_type'=>2))->result();
+		// $data['plp'] = $this->m_general->gPlaceW(array('place.id_transportation_type'=>1))->result();
+		// $data['plk'] = $this->m_general->gPlaceW(array('place.id_transportation_type'=>2))->result();
 		$this->load->view('template',$data);
 	}
 	public function he(){
 
-    require_once(APPPATH.'third_party/PHPMailer/PHPMailerAutoload.php');
+        require_once(APPPATH.'third_party/PHPMailer/PHPMailerAutoload.php');
 		$mail = new PHPMailer();
 		$mail->IsSMTP();
 		$mail->Mailer = "smtp";
