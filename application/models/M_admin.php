@@ -64,6 +64,40 @@ public function gPlace(){
     return $query->result();
 }
 
+public function gJadwal(){
+    // $this->db->join('city','city.id_city = place.id_city');
+    // $this->db->join('transportation_type','transportation_type.id_transportation_type = place.id_transportation_type');
+    $this->db->order_by("keberangkatan", "asc");
+    // $this->db->where('tempat_asal','Gedebage');
+    $this->db->where('keberangkatan >', date('H:i:s'));
+    $query = $this->db->get('v_schedule');
+    return $query->result();
+}
+
+public function gMeals($tipemakanan){
+    // $this->db->join('city','city.id_city = place.id_city');
+    // $this->db->join('transportation_type','transportation_type.id_transportation_type = place.id_transportation_type');
+    // $this->db->order_by("keberangkatan", "asc");
+    // // $this->db->where('tempat_asal','Gedebage');
+    $this->db->where('Tipe', $tipemakanan);
+    $query = $this->db->get('meals');
+    return $query->result();
+}
+
+
+
+
+public function gJadwalW($kondisi,$kondisi2,$dimana,$kelas){
+    // $this->db->join('city','city.id_city = place.id_city');
+    // $this->db->join('transportation_type','transportation_type.id_transportation_type = place.id_transportation_type');
+    $this->db->order_by("keberangkatan", "asc");
+    $this->db->where($kondisi,$dimana);
+    $this->db->where($kondisi2,$kelas);
+    $this->db->where('keberangkatan >', date('H:i:s'));
+    $query = $this->db->get('v_schedule');
+    return $query->result();
+}
+
 public function gLoc(){
     $this->db->join('v_rute','v_rute.id_rute = train_movement.id_rute');
 
