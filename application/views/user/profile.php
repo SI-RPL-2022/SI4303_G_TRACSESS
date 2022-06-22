@@ -102,8 +102,8 @@ body {
 
 
       <!-- <img src="https://assets.pikiran-rakyat.com/crop/0x0:1000x924/x/photo/2022/03/10/141822281.jpg" alt="Avatar" style="width:150px;border-radius: 50%; "> -->
-      <button type="submit" class="btn blue" style="margin-top:25px;margin-left:10px"><i class="material-icons inline-text"></i> Upload Foto Baru</button>
-
+    <!--   <button type="submit" class="btn blue" style="margin-top:25px;margin-left:10px"><i class="material-icons inline-text"></i> Upload Foto Baru</button>
+ -->
 
 
     </div>

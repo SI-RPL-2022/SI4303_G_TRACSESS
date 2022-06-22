@@ -77,6 +77,14 @@ class M_General extends CI_Model{
 		$query = $this->db->get('costumer');
 		return $query->row();
 	}
+
+	public function usrInfo21($id_costumer){
+		$this->db->where('costumer.id_costumer',$id_costumer);
+		// $this->db->join('user','user.id_user=costumer.id_user');
+		$query = $this->db->get('costumer');
+		return $query->row();
+	}
+
 	public function gCostumer(){
 		$this->db->join('user','user.id_user=costumer.id_user');
 		$query = $this->db->get('costumer');
