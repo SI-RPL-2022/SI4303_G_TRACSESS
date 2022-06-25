@@ -140,13 +140,16 @@ class User extends CI_Controller{
 			$config['upload_path']          = APPPATH. '../assets/images/profilepic/';
 			$config['allowed_types']        = 'gif|jpg|png';
 			$config['max_size']             = 4000;
+			// $data['content'] = 'user/profile';
 
 			$this->load->library('upload', $config);
 
 			if ( ! $this->upload->do_upload('pic_file')){
-				$error = array('error' => $this->upload->display_errors());
-				$data['content'] = 'user/profile';
-				$this->load->view('template', $error);
+				// $error = array('error' => $this->upload->display_errors());
+				// $data['content'] = 'user/profile';
+				// $this->load->view('template', $error);
+
+				$this->m_general->uData('costumer',$data,array('id_costumer'=>$this->session->userdata('auth_user')));
 			}else{
 
 				//file is uploaded successfully
