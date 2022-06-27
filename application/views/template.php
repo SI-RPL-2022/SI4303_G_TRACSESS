@@ -19,7 +19,7 @@
         </a>
         <a href="#" data-activates="mobile-demo" class="button-collapse blue-text"><i class="material-icons">menu</i></a>
 
-        <ul class="right hide-on-med-and-down">
+        <ul class="right hide-on-med-and-down" style="">
           <li>
 
           </li>
@@ -33,9 +33,12 @@
             <?php if ($this->session->userdata('auth_user')) {
               $info = $this->m_general->gDataW('costumer', array('id_costumer' => $this->session->userdata('auth_user')))->row();
             ?>
-              <a class='light dropdown-button grey lighten-5 black-text' href='#' data-activates='dropdown1' style="width:150px ">
-                <i class="material-icons inline-text">account_circle</i> <?= $info->full_name ?></a>
+              <a class='light dropdown-button grey lighten-5 black-text' href='#' data-activates='dropdown1' style="width:250px;text-align:right;">
+                <i class="material-icons inline-text"> </i> <?= $info->full_name ?></a>
               <ul id='dropdown1' class='dropdown-content'>
+                <li><a href="<?= site_url('user/foodmenu') ?>"><i class="material-icons">restaurant</i>Meals On Train</a></li>
+                <li><a href="<?= site_url('user/schedule') ?>"><i class="material-icons">schedule</i>Data Kedatangan</a></li>
+                <li><a href="<?= site_url('user/schedulereverse') ?>"><i class="material-icons">schedule</i>Data Keberangkatan</a></li>
                 <li><a href="<?= site_url('user/profile') ?>"><i class="material-icons">settings</i>Profilku</a></li>
                 <li><a href="<?= site_url('user/order') ?>"><i class="material-icons">shopping_cart</i> Pesanan</a></li>
                 <li><a href="<?= site_url('auth/logout') ?>"><i class="material-icons">power_settings_new</i> Keluar</a></li>

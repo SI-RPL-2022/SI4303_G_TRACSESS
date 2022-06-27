@@ -3,19 +3,19 @@
  <div class="carousel carousel-slider center" data-indicators="true">
   <div class="carousel-fixed-item center">
   </div>
-  <div style="text-align: left" class="carousel-item blue lighten-1 white-text" href="#one!" style="background-image: url('http://2.bp.blogspot.com/-gRUqxgtdLes/Vq7Cdxvd-0I/AAAAAAAADHs/y3DO6oUTnrk/s1600/Bima-Ditarik-CC206105.jpg');" >
+  <div style="text-align: left" class="carousel-item blue lighten-1 white-text" href="#one!" >
     <div class="container" >
     <?php 
     if($this->session->userdata('auth_user')){
       $info = $this->m_general->gDataW('costumer',array('id_costumer'=>$this->session->userdata('auth_user')))->row();
       ?>
       <h3 style="margin-top: 100px" class="light">Hai, <?=$info->full_name?></h3>
-      <p class="white-text">Pesan Tiketmu Hanya Di Aplikasi TRACSESS Vesi beranda</p>
+      <p class="white-text">Pesan Tiketmu Hanya Di Aplikasi TRACSESS</p>
       <?php
     }else{
       ?>
       <h3 style="margin-top: 100px" class="light">SELAMAT DATANG DI TRACSESS</h3>
-      <p class="white-text">Booking Online Tiket Kereta Apimu Sekarang Juga Vesi beranda</p>
+      <p class="white-text">Booking Online Tiket Kereta Apimu Sekarang Juga</p>
       <a href="<?=site_url('account/register')?>" class="btn waves-effect blue white-text darken-text-2">DAFTAR SEKARANG</a>
       <a href="<?=site_url('Contoh')?>" class="btn waves-effect blue white-text darken-text-2">DAFTAR SEKARANG</a>
       <?php
@@ -195,47 +195,6 @@
   
 
 </div>
-<div class="row">
-
-<!--    <center><h1> UNDER CONSTRUCTION !!!!</h1></center> -->
-
-
-<div class="row" style="margin-top: 50px; margin-left: 340px;  width:50%;text-align:center;justify-content:center;border-radius: 15px;background-color:#42A5F5; box-shadow: 3px 3px 3px 3px #cccccc;">
-    <div class="col m6" >
-      <table style="width:100%;">  
-  <tr>
-    <th rowspan="2"><img src="https://catatanoline.web.id/wp-content/uploads/2019/08/E-wallet-900x506.png" style="width:50px "></th>
-    <td><b><i>TRACSESS Pay</i></b></td>
-  </tr>
-  <tr>
-    <td>      Rp.<?php echo number_format($info->Balance) ?>
-   <!--    <?=$info->Balance?> -->
-<!--       <a href="" style="color:black"><?=$p->full_name?></a> -->
-      <?php  ?></td>
-  </tr>
-</table>
-    </div>
-
-        <div class="col m6">
-     <table style="width:100%">
-
-  <tr>
-     <th rowspan="2"><img src="https://www.pinclipart.com/picdir/big/355-3556122_4-succeed-vector-trophy-icon-png-clipart.png" style="width:30px "></th>
-    <td><b><i>Your Point</i></b></td>
-  </tr>
-  <tr>
-    <td>-</td>
-  </tr>
-</table>
-    </div>
-
-      
-   
-  </div>
-</div>
-
-
-
 
   <div class="row">
 
@@ -277,7 +236,7 @@
     </div>
     <div class="col m8 partner-list">
       <?php foreach($pk as $p) {?>
-      <a href="<?=base_url()."assets/"?>images/company_logo/<?=$p->company_logo?>" class="partner"><img title="<?=$p->company_name?>" src="<?=base_url()."assets/"?>images/company_logo/<?=$p->company_logo?>"></a>
+      <a href="" class="partner"><img title="<?=$p->company_name?>" src="<?=base_url()."assets/"?>images/company_logo/<?=$p->company_logo?>"></a>
       <?php } ?>
     </div>
   </div>
