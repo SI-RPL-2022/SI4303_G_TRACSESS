@@ -7,6 +7,31 @@
 </div>
  -->
 
+<style type="text/css">.float{
+  position:fixed;
+  width:60px;
+  height:60px;
+  bottom:40px;
+  right:40px;
+  background-color:#64B5F6;
+  color:#FFF;
+  border-radius:50px;
+  text-align:center;
+  font-size:30px;
+  box-shadow: 2px 2px 3px #999;
+  z-index:100;
+}
+
+.my-float{
+  margin-top:16px;
+}</style>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<a href="#menu" class="float" target="_blank">
+<i class="fa fa-arrow-up my-float"></i>
+</a>
+
+
+
 <link rel="stylesheet" href="<?= base_url() . "assets/" ?>css/menu.css">
 <script src="https://www.w3schools.com/lib/w3.js"></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">
@@ -21,7 +46,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "calibri", sans-serif}
 <div id="menu" class="w3-container w3-secondary w3-xxlarge w3-padding-64">
 <h1 class="w3-center w3-jumbo w3-padding-32" > <img class="img-brand" src="<?= base_url() . "assets/" ?>images/company_logo/kai.png" style="width:100px; "> <b ><i>MEALS ON TRAIN</i></b></h1>
 <div class="w3-row w3-center ">
-<a href="#pizza"><div class="w3-third w3-padding-large w3-grey">Food</div></a>
+<a href="#pizza"><div class="w3-third w3-padding-large w3-hover-grey">Food</div></a>
 <a href="#pasta"><div class="w3-third w3-padding-large w3-hover-grey">Drink</div></a>
 <a href="#starters"><div class="w3-third w3-padding-large w3-hover-grey">Snacks</div></a>
 </div>
@@ -194,3 +219,16 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "calibri", sans-serif}
 <!-- End Content -->
 </div>
 </div>
+
+
+<script type="text/javascript">
+  
+ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
+</script>
