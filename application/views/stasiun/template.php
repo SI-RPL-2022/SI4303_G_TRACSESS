@@ -40,7 +40,7 @@
               <div class="background blue">
               </div>
               <a href="#!user"><img class="circle" src="<?= base_url() . "assets/" ?>images/user-white.png"></a>
-              <a href="#!name" style="padding-bottom: 20px;"><span class="white-text name">Stasiun</span></a>
+              <a href="#!name" style="padding-bottom: 20px;"><span class="white-text name"> <?= $lokasiku ?></span></a>
             </div>
           </li>
           <li><a href="<?= site_url('stasiun/place') ?>"><i class="material-icons">train</i>Lokasi Kereta</a></li>

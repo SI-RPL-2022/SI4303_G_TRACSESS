@@ -47,7 +47,7 @@
               <div class="row">
                 <div class="input-field">
                   <?php if($i['type']=='text'||$i['type']=='number'||$i['type']=='time'||$i['type']=='file'){ ?>
-                  <input name="<?=$i['name']?>" <?php if(isset($i['id'])) echo 'id="'.$i['id'].'"'?> type="<?=$i['type']?>" <?php if(isset($i['value'])) echo 'value="'.$i['value'].'"'?> <?php if(isset($i['class'])) echo 'class="'.$i['class'].'"'?> >
+                  <input name="<?=$i['name']?>" <?php if(isset($i['id'])) echo 'id="'.$i['id'].'"'?> type="<?=$i['type']?>" readonly="<?=$i['readonly']?>" <?php if(isset($i['value'])) echo 'value="'.$i['value'].'"'?> <?php if(isset($i['class'])) echo 'class="'.$i['class'].'"'?> >
                   <?php }elseif($i['type']=='select'){
                     ?>
                     <select id="<?php if(isset($i['id'])) echo $i['id']?>" name="<?=$i['name']?>" <?php if(isset($i['onchange'])) echo 'onchange="'.$i['onchange'].'"'?> <?php if(isset($i['class'])) echo 'class="'.$i['class'].'"'?>>
