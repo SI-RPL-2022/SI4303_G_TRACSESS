@@ -136,6 +136,8 @@ class User extends CI_Controller{
 	public function p_profile(){
 		$data = $_POST;
 
+			$cek = $this->m_general->usrInfo($this->session->userdata('auth_user'));
+			$id_user = $cek->id_user;
 
 			$config['upload_path']          = APPPATH. '../assets/images/profilepic/';
 			$config['allowed_types']        = 'gif|jpg|png';
@@ -148,7 +150,7 @@ class User extends CI_Controller{
 				// $error = array('error' => $this->upload->display_errors());
 				// $data['content'] = 'user/profile';
 				// $this->load->view('template', $error);
-
+				$this->m_general->uData('user',array('username'=>$data['email'],'phone'=>$data['phone'],'address'=>$data['address']),array('id_user'=>$id_user));
 				$this->m_general->uData('costumer',$data,array('id_costumer'=>$this->session->userdata('auth_user')));
 			}else{
 
@@ -162,6 +164,7 @@ class User extends CI_Controller{
 				// //store pic data to the db
 				// $this->pic_model->store_pic_data($data);
 				// $this->m_general->uData('order',array('bukti_transfer'=>$data['pic_file']),array('id_order'=>$data['id_order']));
+				$this->m_general->uData('user',array('username'=>$data['email'],'phone'=>$data['phone'],'address'=>$data['address']),array('id_user'=>$id_user));
 				$this->m_general->uData('costumer',$data,array('id_costumer'=>$this->session->userdata('auth_user')));
 				// redirect('/');
 			}
