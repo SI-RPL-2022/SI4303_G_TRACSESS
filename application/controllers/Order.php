@@ -87,7 +87,7 @@
           <table class="oconfirm">
               <tbody>';
               foreach($cart as $c){
-        	$i = $this->m_general->gRuteW($c['id_rute']);
+        	$i = $this->m_general->gRuteWith($c['id_rute']);
                 echo'<tr>
                 <td width="80px">
                   <img style="width: 60px" src="'.site_url().'assets/images/company_logo/'.$i[0]->company_logo.'"></td>
