@@ -8,9 +8,15 @@ class Costumer extends CI_Controller{
 		}
 	}
 	public $table='staff'; 
+	public $table2='user';
 	public $page='costumer'; 
 	public $primary_key='Id_staff'; 
+	public $primary_key2='id_user';
 	public function index($action='',$id=''){
+		$cek = $this->m_general->StasiunInfo($this->session->userdata('auth_admin'));
+        $id_user = $cek->id_user;
+        $getValue = $this->m_general->gDataW($this->table2,array($this->primary_key2=>$id_user))->row();
+        $data['lokasiku'] = $getValue->address;
 		$data['title'] = 'Akun Petugas';
 		$data['content'] = 'stasiun/crud_custom';
 		$data['tableTitle'] = array('Nama','Email','No. HP','Alamat');
