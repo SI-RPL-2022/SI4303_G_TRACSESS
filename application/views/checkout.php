@@ -123,7 +123,7 @@
               <div class="title-card blue lighten-2"><i class="material-icons inline-text white-text">shopping_cart</i> Pesanan Anda</div>
               <div class="card-content white">
                 <?php foreach($cart as $c){
-                  $i = $this->m_general->gRuteW($c['id_rute']);
+                  $i = $this->m_general->gRuteWith($c['id_rute']);
                   ?>
                   <div class="row">
                     <b><?=hari_tgl($i[0]->depart_at)?></b><br>
@@ -296,7 +296,7 @@
                             <?php 
                             $total = 0 ;
                             foreach($cart as $c){
-                              $i = $this->m_general->gRuteW($c['id_rute']);
+                              $i = $this->m_general->gRuteWith($c['id_rute']);
                               $harga = $i[0]->price*$c['jumlah'];
                               $total = $total+$harga;
                               ?>
