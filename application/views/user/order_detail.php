@@ -47,7 +47,7 @@
               $tgl = '';
               $v=0;
               foreach($res as $r){
-                $i = $this->m_general->gRuteW($r->id_rute);
+                $i = $this->m_general->gRuteWith($r->id_rute);
                 if($v==0){
                   $tgl = $i[0]->depart_at.' '.$i[0]->depart_time;
                 }
@@ -95,7 +95,7 @@
               <div style="margin-top: 40px">
                 <h5 class="light">Detail Perjalanan</h5>
                 <?php foreach($res as $r){
-                  $i = $this->m_general->gRuteW($r->id_rute);
+                  $i = $this->m_general->gRuteWith($r->id_rute);
                   ?>
                   <b><?=hari_tgl($i[0]->depart_at)?></b><br>
                   <table class="detail">
@@ -122,8 +122,16 @@
                         </tr>
                       </tbody>
                     </table>
+  <?php } ?>
+                    <?php foreach($res as $r){
+                  $loc = $this->m_general->gRuteW($r->id_rute);
+                  ?>
+
+
                     <hr style="width:500px; margin-right: 40px; margin-top: 100px;">
-                     <p style="text-align:right;"> <i>Lokasi Terkini Kereta <?=$i[0]->transportation_name?> Berada di Stasiun <?=$i[0]->location?> Pada Pukul <?=$i[0]->Time?></i></p>
+                     <p style="text-align:right;"> <i>Lokasi Terkini Kereta <?=$loc[0]->transportation_name?> Berada di Stasiun <?=$loc[0]->location?> Pada Pukul <?=$loc[0]->Time?></i></p>
+
+
                     <?php } ?>
                   </div>
                 </div>
