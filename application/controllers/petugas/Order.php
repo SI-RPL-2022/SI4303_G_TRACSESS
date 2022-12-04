@@ -13,6 +13,7 @@ class Order extends CI_Controller{
     public $primary_key='id_order'; 
 	public function index($action='',$id=''){
 		$data['title'] = 'Cek In Ticket';
+        $data['title2'] = 'Scan Tiket';
 		$data['content'] = 'petugas/crud_custom2';
 		$data['tableTitle'] = array('Kode Ticket','Nama','Waktu','Harga','Pembayaran','Status Cekin');
 		$data['tableField'] = array('ticket_code','buyer_name','time','price','pay_status','check_in2');
@@ -32,6 +33,18 @@ class Order extends CI_Controller{
 		$data['primary_key'] = $this->primary_key;
 		$this->load->view('petugas/template',$data);
 	}
+
+    public function autoqr(){
+        $ticket_code = $_POST['email'];
+        $data = $this->m_general->gDataW('v_order',array('ticket_code'=> $ticket_code))->row();
+        $id = $data->id_order;
+        $this->m_general->uData('order',array('check_in'=>'CekIn'),array('id_order'=>$id));
+        $msg = 'Pesanan #'.$data->id_order.' atas nama '.$data->buyer_name.' berhasil cek in';
+        $this->session->set_flashdata('pesan','<div class="alert green">'.$msg.'</div>');
+        $res = json_encode(array('result' => 1, 'content' => 'Login berhasil, mengalihkan ...'));
+        $this->output->set_content_type('application/json')->set_output($res);
+    }
+
 	public function p($action,$id=''){
 		if($action=='accept'){			
 			$data = $this->m_general->gDataW('order',array('id_order'=>$id))->row();

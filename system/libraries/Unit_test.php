@@ -145,7 +145,7 @@ class CI_Unit_test {
 	 * @param	string	$notes
 	 * @return	string
 	 */
-	public function run($test, $expected = TRUE, $test_name = 'undefined', $notes = '')
+	public function run($test, $expected = TRUE, $test_name = 'undefined')
 	{
 		if ($this->active === FALSE)
 		{
@@ -172,7 +172,7 @@ class CI_Unit_test {
 			'result'        => ($result === TRUE) ? 'passed' : 'failed',
 			'file'          => $back['file'],
 			'line'          => $back['line'],
-			'notes'         => $notes
+			// 'notes'         => $notes
 		);
 
 		$this->results[] = $report;
@@ -349,7 +349,7 @@ class CI_Unit_test {
 	 */
 	protected function _default_template()
 	{
-		$this->_template = "\n".'<table style="width:100%; font-size:small; margin:10px 0; border-collapse:collapse; border:1px solid #CCC;">{rows}'."\n</table>";
+		$this->_template = "\n".'<table style="width:100%; font-size:small; border-collapse:collapse; border:1px solid #CCC;">{rows}'."\n";
 
 		$this->_template_rows = "\n\t<tr>\n\t\t".'<th style="text-align: left; border-bottom:1px solid #CCC;">{item}</th>'
 					."\n\t\t".'<td style="border-bottom:1px solid #CCC;">{result}</td>'."\n\t</tr>";

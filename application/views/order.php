@@ -49,7 +49,7 @@
     <div class="row">
       <div class="col s12 m8">
         <?php foreach($cart as $c){
-          $i = $this->m_general->gRuteW($c['id_rute']);
+          $i = $this->m_general->gRuteWith($c['id_rute']);
           ?>
           <div class="card blue lighten-1">
             <div class="card-content ">
@@ -107,7 +107,7 @@
                     <?php 
                     $total = 0 ;
                     foreach($cart as $c){
-                      $i = $this->m_general->gRuteW($c['id_rute']);
+                      $i = $this->m_general->gRuteWith($c['id_rute']);
                       $harga = $i[0]->price*$c['jumlah'];
                       $total = $total+$harga;
                       ?>

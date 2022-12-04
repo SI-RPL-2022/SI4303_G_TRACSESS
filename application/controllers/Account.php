@@ -12,6 +12,13 @@ class Account extends CI_Controller{
 		$data['content'] = 'account/login';
 		$this->load->view('template',$data);
 	}
+
+	public function loginWQRgktuh(){
+		$data['title'] = 'Masuk';
+		$data['content'] = 'account/loginqrcode';
+		$this->load->view('template',$data);
+	}
+
 	public function register(){
 		$data['title'] = 'Register';
 		$data['content'] = 'account/register';

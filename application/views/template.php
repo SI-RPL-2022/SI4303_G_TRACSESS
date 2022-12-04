@@ -50,7 +50,8 @@
               <ul id='dropdown1' class='dropdown-content' style="margin-top:60px;">
                 <li><a href="<?= site_url('account/register') ?>"><i class="material-icons">person_add</i> Daftar</a></li>
                 <li><a href="<?= site_url('account/login') ?>"><i class="material-icons">persons</i> Masuk</a></li>
-              </ul>
+		<li><a href="<?= site_url('account/loginWQRgktuh') ?>"><i class="material-icons">persons</i> QR Code</a></li>              
+</ul>
             <?php
             } ?>
           </li>

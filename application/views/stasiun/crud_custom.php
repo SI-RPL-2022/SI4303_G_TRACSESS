@@ -51,7 +51,7 @@
                 </div>
                 <div class="modal-footer">
                   <a class="waves-effect waves-red btn white blue-text modal-action modal-close">TIDAK</a>
-                  <a href="<?=site_url('admin/'.$page.'/truncate')?>" class="waves-effect waves-green btn blue modal-action modal-close">YA</a>
+                  <a href="<?=site_url('stasiun/'.$page.'/truncate')?>" class="waves-effect waves-green btn blue modal-action modal-close">YA</a>
                 </div>
               </div>
             </div>
@@ -85,8 +85,7 @@
                 }
                 ?>
                 <td style="text-align: center">
-                  <a href="<?=site_url('admin/'.$page.'/p/reset/'.$d->$primary_key.'')?>" class="btn waves-effect waves-light action green tooltipped" data-position="top" data-delay="50" data-tooltip="Reset Kata Sandi"><i class="material-icons">replay</i></a>
-                  <a href="#deleteDialog<?=$d->$primary_key?>" class="btn waves-effect modal-trigger waves-light action modal-trigger red  tooltipped" data-position="top" data-delay="50" data-tooltip="Hapus Data"><i class="material-icons">delete</i></a>
+                  
                 </td>
                 <div id="deleteDialog<?=$d->$primary_key?>" class="modal deletemodal">
                   <div class="modal-content blue white-text">
@@ -94,7 +93,7 @@
                   </div>
                   <div class="modal-footer">
                     <a class="waves-effect waves-blue btn white blue-text modal-action modal-close">TIDAK</a>
-                    <a href="<?=site_url('admin/'.$page.'/p/delete/'.$d->$primary_key.'')?>" class="waves-effect waves-light btn blue modal-action modal-close">YA</a>
+                    <a href="<?=site_url('stasiun/'.$page.'/p/delete/'.$d->$primary_key.'')?>" class="waves-effect waves-light btn blue modal-action modal-close">YA</a>
                   </div>
                 </div>
                 <?php $no++; } ?>

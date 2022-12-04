@@ -80,6 +80,7 @@ public function gMeals($tipemakanan){
     // $this->db->order_by("keberangkatan", "asc");
     // // $this->db->where('tempat_asal','Gedebage');
     $this->db->where('Tipe', $tipemakanan);
+    $this->db->limit(1);
     $query = $this->db->get('meals');
     return $query->result();
 }

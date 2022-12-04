@@ -65,6 +65,9 @@ class Rute extends CI_Controller{
 			}
 			$data = $_POST;
 			$this->m_general->iData($this->table,$data);
+			$cekid = $this->m_general->gLastID('rute','id_rute')->row();
+			$idnyaituloh = $cekid->id_rute;
+			$this->m_general->iData('train_movement',array('Time'=>'000000','address'=>'Dipo Daop','comment'=>'-','id_rute'=>$idnyaituloh));
 			$msg = 'Data berhasil ditambahkan';
 		}elseif($action=='update'){
 			$data = $_POST;

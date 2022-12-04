@@ -136,17 +136,22 @@ class User extends CI_Controller{
 	public function p_profile(){
 		$data = $_POST;
 
+			$cek = $this->m_general->usrInfo($this->session->userdata('auth_user'));
+			$id_user = $cek->id_user;
 
 			$config['upload_path']          = APPPATH. '../assets/images/profilepic/';
 			$config['allowed_types']        = 'gif|jpg|png';
 			$config['max_size']             = 4000;
+			// $data['content'] = 'user/profile';
 
 			$this->load->library('upload', $config);
 
 			if ( ! $this->upload->do_upload('pic_file')){
-				$error = array('error' => $this->upload->display_errors());
-				$data['content'] = 'user/profile';
-				$this->load->view('template', $error);
+				// $error = array('error' => $this->upload->display_errors());
+				// $data['content'] = 'user/profile';
+				// $this->load->view('template', $error);
+				$this->m_general->uData('user',array('username'=>$data['email'],'phone'=>$data['phone'],'address'=>$data['address']),array('id_user'=>$id_user));
+				$this->m_general->uData('costumer',$data,array('id_costumer'=>$this->session->userdata('auth_user')));
 			}else{
 
 				//file is uploaded successfully
@@ -159,6 +164,7 @@ class User extends CI_Controller{
 				// //store pic data to the db
 				// $this->pic_model->store_pic_data($data);
 				// $this->m_general->uData('order',array('bukti_transfer'=>$data['pic_file']),array('id_order'=>$data['id_order']));
+				$this->m_general->uData('user',array('username'=>$data['email'],'phone'=>$data['phone'],'address'=>$data['address']),array('id_user'=>$id_user));
 				$this->m_general->uData('costumer',$data,array('id_costumer'=>$this->session->userdata('auth_user')));
 				// redirect('/');
 			}
@@ -305,4 +311,214 @@ class User extends CI_Controller{
 
 
     }
+
+
+
+
+
+	public function Aut_Test_Loc(){
+			$this->load->library('unit_test');
+			//START
+			$this->unit->active(TRUE);
+			
+			$result = $this->test_get_LastLoc("1");// <- Nama Function yang mau diubah
+			
+			$expected_result = 'Lokasi Terkini Kereta Argo Parahyangan Berada di Stasiun Gambir Pada Pukul 07:06:14';  // <- Expektasi data yang didapat
+			$data['expected']=$expected_result;
+
+			$test_name = "Get Last Location Of Train"; // <- Nama testnya
+
+			$this->unit->use_strict(TRUE);
+			// echo $this->unit->run($result,$expected_result,$test_name);
+			$data['hasil']= $this->unit->run($result,$expected_result,$test_name);
+
+			$data['result']=$result;
+			$data['notes']= 'Mantap Berhasil'; // <- Catatan pada Test
+			$data['title'] = 'Detail Pembelian';
+			$data['content'] = 'aut_test';
+			$this->load->view('template',$data);
+			//END
+			// $this->load->view('template',$data);
+			// $this->load->view('home_view');
+		}
+
+		public function Aut_Test_Food(){
+			$this->load->library('unit_test');
+			//START
+			$this->unit->active(TRUE);
+			
+			$result = $this->test_foodmenu();// <- Nama Function yang mau diubah
+			
+			$expected_result = 'Ayam Geprek';  // <- Expektasi data yang didapat
+			$data['expected']=$expected_result;
+
+			$test_name = "Get Food Menu "; // <- Nama testnya
+
+			$this->unit->use_strict(TRUE);
+			// echo $this->unit->run($result,$expected_result,$test_name);
+			$data['hasil']= $this->unit->run($result,$expected_result,$test_name);
+
+			$data['result']=$result;
+			if($result == $expected_result){$data['notes']= 'Mantap Berhasil';}else{$data['notes']= 'GAGAL';} // <- Catatan pada Test
+			$data['title'] = 'Detail Pembelian';
+			$data['content'] = 'aut_test';
+			$this->load->view('template',$data);
+			//END
+			// $this->load->view('template',$data);
+			// $this->load->view('home_view');
+		}
+
+		public function Aut_Test_Account(){
+			$this->load->library('unit_test');
+			//START
+			$this->unit->active(TRUE);
+			
+			$result = $this->test_profile();// <- Nama Function yang mau diubah
+			
+			$expected_result = 'Azeezee Asadel';  // <- Expektasi data yang didapat
+			$data['expected']=$expected_result;
+
+			$test_name = "Get Account Data "; // <- Nama testnya
+
+			$this->unit->use_strict(TRUE);
+			// echo $this->unit->run($result,$expected_result,$test_name);
+			$data['hasil']= $this->unit->run($result,$expected_result,$test_name);
+
+			$data['result']=$result;
+			if($result == $expected_result){$data['notes']= 'Mantap Berhasil';}else{$data['notes']= 'GAGAL';} // <- Catatan pada Test
+			$data['title'] = 'Detail Pembelian';
+			$data['content'] = 'aut_test';
+			$this->load->view('template',$data);
+			//END
+			// $this->load->view('template',$data);
+			// $this->load->view('home_view');
+		}
+
+	public function Aut_Test_Schedule(){
+			$this->load->library('unit_test');
+			//START
+			$this->unit->active(TRUE);
+			
+			$result = $this->test_scheduleWith('tempat_tujuan','class_name','Manggarai','Economy');// <- Nama Function yang mau diubah
+			
+			$expected_result = '16:34:00';  // <- Expektasi data yang didapat
+			$data['expected']=$expected_result;
+
+			$test_name = "Get Schedule "; // <- Nama testnya
+
+			$this->unit->use_strict(TRUE);
+			// echo $this->unit->run($result,$expected_result,$test_name);
+			$data['hasil']= $this->unit->run($result,$expected_result,$test_name);
+
+			$data['result']=$result;
+
+
+
+			if($result == $expected_result){$data['notes']= 'Data Ditemukan';}else{$data['notes']= 'Data Tidak ditemukan';} // <- Catatan pada Test
+			$data['title'] = 'Detail Pembelian';
+			$data['content'] = 'aut_test';
+			$this->load->view('template',$data);
+			//END
+			// $this->load->view('template',$data);
+			// $this->load->view('home_view');
+		}
+
+
+// =========================================================================================================
+// =============================================================
+
+    public function test_get_LastLoc($id_order=''){
+
+    	try {
+    		$data['o'] = $this->m_general->gOrder($id_order);
+
+    		try {
+    			$data['res'] = $this->m_general->gRuteW($id_order);
+
+    			foreach ($data['res'] as $v){
+    				$hasil ='Lokasi Terkini Kereta ' .$v->transportation_name.' Berada di '.$v->address .' Pada Pukul '.$v->Time;
+
+
+    			}
+
+    			// $data['res'] = $this->m_general->gDataW('reservation',array('id_order'=>$id_order))->row();
+    			
+
+    			return $hasil;
+    		} catch (Exception $e) {
+    			return 'Gagal';
+    		}
+    	} catch (Exception $e) {
+    		return 'Gagal';
+    	}
+
+
+		// $data['o'] = $this->m_general->gOrder($id_order);
+		// $data['res'] = $this->m_general->gDataW('reservation',array('id_order'=>$id_order))->result();
+		$data['title'] = 'Detail Pembelian';
+		$data['content'] = 'aut_test';
+		// $this->load->view('template',$data);
+
+	}
+
+	public function test_foodmenu(){
+    	// $data['ket'] = 'KEDATANGAN';
+    	// $data['kondisiku'] = 'tempat_tujuan';
+    	// $data['stasiun21'] = $this->m_admin->gPlace();
+    	// $data['kelasnya'] = $this->m_admin->gTransportationC();
+    	// $data['tableTitle'] = array('Kode KA','Nama Kereta','Asal','Kedatangan','Keberangkatan');
+    	// $data['tableField'] = array('transportation_code','transportation_name','tempat_asal','kedatangan','keberangkatan');
+    	$data['makanan'] = $this->m_admin->gMeals('Food');
+    	foreach ($data['makanan'] as $v){
+    		$hasil =$v->nama;
+    	}
+
+    	return $hasil;
+    	// $data['minuman'] = $this->m_admin->gMeals('Drink');
+    	// $data['Snacks'] = $this->m_admin->gMeals('Snacks');
+		$data['info'] = $this->m_general->usrInfo($this->session->userdata('auth_user'));
+		$data['title'] = 'Pengaturan Akun';
+		$data['namastasiun'] = '';
+		// $data['bas'] = form_open('user/makanan');
+		$data['content'] = 'aut_test';
+		$this->load->view('template',$data);
+	}
+
+	public function test_profile(){
+		$data['info'] = $this->m_general->usrInfo($this->session->userdata('auth_user'));
+		$user = $this->session->userdata('auth_user');
+		return $data['info']->full_name;
+		// foreach ($data['info'] as $vf){
+  //   		$hasil = $vf->full_name;
+  //   		return $hasil;
+  //   	}
+
+		$data['title'] = 'Pengaturan Akun';
+		$data['content'] = 'aut_test';
+		// $this->load->view('template',$data);
+	}
+
+	public function test_scheduleWith($input1,$input2,$input3,$input4){
+    	
+    	// $data = $_POST;
+    	// $data['kondisiku'] = 'tempat_tujuan';
+    	// $data['ket'] = 'KEDATANGAN';
+    	// $data['stasiun21'] = $this->m_admin->gPlace();
+    	// $data['kelasnya'] = $this->m_admin->gTransportationC();
+    	// $data['bas'] = form_open('user/scheduleWith');
+    	// $data['tableTitle'] = array('Kode KA','Nama Kereta','Asal','Kedatangan','Keberangkatan');
+    	// $data['tableField'] = array('transportation_code','transportation_name','tempat_asal','kedatangan','keberangkatan');
+    	$data['daya'] = $this->m_admin->gJadwalW($input1,$input2,$input3,$input4);
+    	foreach ($data['daya'] as $v){
+    		$hasil = $v->kedatangan;
+    		return $hasil;
+    	}
+    	
+    	// $data['data'] = $this->m_admin->gJadwalW($data['kondisi'],'class_name',$data['Asal'],$data['Kelas']);
+		$data['info'] = $this->m_general->usrInfo($this->session->userdata('auth_user'));
+		$data['title'] = 'Pengaturan Akun';
+		// $data['namastasiun'] = $data['Asal'];
+		$data['content'] = 'aut_test';
+		// $this->load->view('template',$data);
+	}
 }

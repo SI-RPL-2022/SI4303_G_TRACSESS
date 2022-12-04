@@ -571,8 +571,8 @@ textarea:focus,
             src="https://api.qrserver.com/v1/create-qr-code/?data= <?php echo $tr->ticket_code?>&amp;size=100x100" 
             alt="" 
             title="HELLO" 
-            width="100" 
-            height="100" 
+            width="150" 
+            height="150" 
             />
       <h6> Ticket Code </h6>
       <h4 style="color:#34f5c6;"><b><?php echo $tr->ticket_code ?></b></h4>

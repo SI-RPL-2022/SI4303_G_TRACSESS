@@ -171,7 +171,7 @@
     $(document).ready(function() {
       $('.datatables').DataTable({
         "order": [
-          [0, "asc"]
+          [0, "Dsc"]
         ]
       });
       $('select').material_select();
@@ -239,6 +239,7 @@
         $('#id_transportation').material_select();
       });
     };
+
   </script>
 </body>
 

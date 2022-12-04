@@ -68,6 +68,15 @@ class M_General extends CI_Model{
 	public function gIDCostumer($email){
 		return $this->db->get_where('costumer',array('email'=>$email))->row()->id_costumer;
 	}
+
+	public function gLastID($table,$primary){
+		// $this->db->where($where);
+		$this->db->order_by($primary,"desc");
+		$this->db->limit(1);
+		$query = $this->db->get($table);
+		return $query;
+	}
+
 	public function gIDUser($email){
 		return $this->db->get_where('costumer',array('email'=>$email))->row()->id_user;
 	}
@@ -77,6 +86,14 @@ class M_General extends CI_Model{
 		$query = $this->db->get('costumer');
 		return $query->row();
 	}
+
+	public function StasiunInfo($id_costumer){
+		$this->db->where('user.id_user',$id_costumer);
+		// $this->db->join('user','user.id_user=costumer.id_user');
+		$query = $this->db->get('user');
+		return $query->row();
+	}
+
 	public function gCostumer(){
 		$this->db->join('user','user.id_user=costumer.id_user');
 		$query = $this->db->get('costumer');
@@ -148,6 +165,25 @@ class M_General extends CI_Model{
 		$this->db->join('transportation_class','transportation_class.id_transportation_class=transportation.id_transportation_class');
 		$this->db->join('transportation_company','transportation_company.id_transportation_company=transportation.id_transportation_company');
 		$this->db->join('train_movement','train_movement.id_rute=rute.id_rute');
+		$query = $this->db->get('rute')->result();
+		$x=0;
+		foreach($query as $d){
+			$p_from = $this->gPlaceW(array('id_place'=>$d->id_place_from))->row();
+			$p_to = $this->gPlaceW(array('id_place'=>$d->id_place_to))->row();
+			$query[$x]->place_name_from = $p_from->city_name.' ('.$p_from->place_code.')';
+			$query[$x]->place_name_to = $p_to->city_name.' ('.$p_to->place_code.')';
+			$query[$x]->p_name_from = $p_to->place_name;
+			$query[$x]->p_name_to = $p_from->place_name;
+			$x++;
+		}
+		return $query;
+	}
+
+	public function gRuteWith($id_rute){
+		$this->db->where('rute.id_rute',$id_rute);
+		$this->db->join('transportation','transportation.id_transportation=rute.id_transportation');
+		$this->db->join('transportation_class','transportation_class.id_transportation_class=transportation.id_transportation_class');
+		$this->db->join('transportation_company','transportation_company.id_transportation_company=transportation.id_transportation_company');
 		$query = $this->db->get('rute')->result();
 		$x=0;
 		foreach($query as $d){

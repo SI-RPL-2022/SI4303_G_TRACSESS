@@ -1,5 +1,23 @@
 <?php
 class Auth extends CI_Controller{
+	public function index(){
+			$this->load->library('unit_test');
+			//START
+			$this->unit->active(TRUE);
+			
+			$result = $this->login("logesh","12345");
+			
+			$expected_result = true;
+
+			$test_name = "Login Process";
+
+			$this->unit->use_strict(TRUE);
+
+			echo $this->unit->run($result,$expected_result,$test_name,'this login works only for me');
+			//END
+
+			$this->load->view('home_view');
+		}
 	public function register(){
 		$data = $_POST;
 		$this->form_validation->set_rules('full_name','Nama Lengkap','required');
